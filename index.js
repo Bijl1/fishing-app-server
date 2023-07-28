@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors(true));
 app.use(express.json());
 
 // Connect to MongoDB using Mongoose
@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/fishing_app', {
 
 // Define and use your routes here (CRUD operations for Lure, Line, and Combo models)
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4200;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });

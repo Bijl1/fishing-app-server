@@ -8,10 +8,10 @@ const luresRoutes = require('./routes/lures.routes');
 const linesRoutes = require('./routes/lines.routes');
 const sinkersRoutes = require('./routes/sinkers.routes');
 
-app.use(cors());
+app.use(cors(true));
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:3000/fishing-app', {
+mongoose.connect('mongodb://localhost:27017/fishing-app', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Server Error' });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4200;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
