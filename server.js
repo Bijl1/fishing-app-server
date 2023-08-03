@@ -7,8 +7,7 @@ const config = require('./config');
 const luresRoutes = require('./routes/lures.routes');
 const linesRoutes = require('./routes/lines.routes');
 const sinkersRoutes = require('./routes/sinkers.routes');
-
-const { authenticateUser } = require('./middleware/auth'); // Import the authenticateUser middleware
+const authRoutes = require('./routes/auth.routes');
 
 app.use(cors(true));
 app.use(express.json());
@@ -24,9 +23,10 @@ mongoose.connect('mongodb://localhost:27017/fishing-app', {
   console.error('Error connecting to the database:', error);
 });
 
-app.use('/lures', authenticateUser, luresRoutes); // Apply authenticateUser middleware to protect lures routes
-app.use('/lines', authenticateUser, linesRoutes); // Apply authenticateUser middleware to protect lines routes
-app.use('/sinkers', authenticateUser, sinkersRoutes); // Apply authenticateUser middleware to protect sinkers routes
+app.use('/lures', luresRoutes);
+app.use('/lines', linesRoutes);
+app.use('/sinkers', sinkersRoutes);
+app.use('/auth', authRoutes);
 
 // Error handling middleware (centralized error handling)
 app.use((err, req, res, next) => {
