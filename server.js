@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 
-const config = require('./config');
+const config = require('./config/config');
 const luresRoutes = require('./routes/lures.routes');
 const linesRoutes = require('./routes/lines.routes');
 const sinkersRoutes = require('./routes/sinkers.routes');
