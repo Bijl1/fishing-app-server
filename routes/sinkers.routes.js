@@ -6,8 +6,8 @@ const { authenticateUser } = require('../middleware/auth');
 // Routes for sinkers
 router.get('/', sinkerController.getAllSinkers);
 router.get('/:id', sinkerController.getSinkerById);
-router.post('/', authenticateUser, sinkerController.createSinker);
-router.put('/:id', authenticateUser, sinkerController.updateSinker);
-router.delete('/:id', authenticateUser, sinkerController.deleteSinker);
+router.post('/', sinkerController.createSinker);
+router.put('/:id', sinkerController.updateSinker);
+router.delete('/:id', sinkerController.deleteSinker);
 
 module.exports = router;

@@ -6,8 +6,8 @@ const { authenticateUser } = require('../middleware/auth');
 // Routes for lines
 router.get('/', lineController.getAllLines);
 router.get('/:id', lineController.getLineById);
-router.post('/', authenticateUser, lineController.createLine);
-router.put('/:id', authenticateUser, lineController.updateLine);
-router.delete('/:id', authenticateUser, lineController.deleteLine);
+router.post('/', lineController.createLine);
+router.put('/:id', lineController.updateLine);
+router.delete('/:id', lineController.deleteLine);
 
 module.exports = router;

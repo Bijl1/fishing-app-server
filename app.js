@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const app = express();
 
-app.use(cors(true));
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:4200/fishing-app', {
@@ -22,9 +22,11 @@ mongoose.connect('mongodb://localhost:4200/fishing-app', {
 const luresRoutes = require('./routes/lures.routes');
 const linesRoutes = require('./routes/lines.routes');
 const sinkersRoutes = require('./routes/sinkers.routes');
+const authRoutes = require('./routes/auth.routes');
 app.use('/lures', luresRoutes);
 app.use('/lines', linesRoutes);
 app.use('/sinkers', sinkersRoutes);
+app.use('/auth', authRoutes);
 
 // Error handling middleware (centralized error handling)
 app.use((err, req, res, next) => {

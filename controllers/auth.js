@@ -8,7 +8,7 @@ const User = require('../models/user');
 const router = express.Router();
 
 // Signup route
-router.post('/signup', async (req, res) => {
+router.post('/sign-up', async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -48,12 +48,14 @@ router.post('/login', async (req, res) => {
 
     // Check if the user exists
     let user = await User.findOne({ email });
+    console.log({user});
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Compare passwords
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log({isMatch});
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
@@ -65,6 +67,7 @@ router.post('/login', async (req, res) => {
       },
     };
     jwt.sign(payload, config.jwtSecret, { expiresIn: '1h' }, (err, token) => {
+        console.log(err, token, payload, isMatch, user);
       if (err) throw err;
       res.json({ token });
     });

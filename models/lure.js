@@ -6,8 +6,8 @@ const lureSchema = new mongoose.Schema({
     required: true,
   },
   lureType: {
-    type: [String],
-    enum: ['type1', 'type2', 'type3'],
+    type: String,
+    enum: ['TopWater', 'fly', 'silver'],
     required: true,
   },
   bestUsedFor: {
