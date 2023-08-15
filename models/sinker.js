@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const sinkerSchema = new mongoose.Schema({
   type: {
-    type: Number,
+    type: String,
     required: true,
   },
   shape: {
