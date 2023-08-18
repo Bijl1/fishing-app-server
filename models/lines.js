@@ -11,7 +11,6 @@ const lineSchema = new mongoose.Schema({
   },
   gauge: {
     type: Number,
-    required: true,
   },
   knotType: {
     type: String,

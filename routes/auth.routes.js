@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
 const User = require('../models/user');
+const {isAuthenticated} = require('../middleware/auth');
 
 // Signup route
 router.post('/signup', async (req, res) => {
@@ -60,20 +61,30 @@ router.post('/signin', async (req, res) => {
 
     // Generate JWT
     const payload = {
-      user: {
-        id: user.id,
-      },
+      ...user,
     };
-    jwt.sign(payload, config.jwtSecret, { expiresIn: '1h' }, (err, token) => {
-        console.log(err, token, payload, isMatch, user);
+    const authToken = jwt.sign(payload, config.jwtSecret, { algorithm: "HS256", expiresIn: '1h' }, (err, token) => {
+        console.log({err, token, payload, isMatch, user});
       if (err) throw err;
-      res.json({ token });
+      res.json({ token: authToken, user });
     });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: 'Server Error' });
   }
 });
+
+// GET  /auth/verify  -  Used to verify JWT stored on the client
+router.get('/verify', isAuthenticated, (req, res, next) => {       // <== CREATE NEW ROUTE
+  console.log({verify: req.headers});
+    // If JWT token is valid the payload gets decoded by the
+    // isAuthenticated middleware and made available on `req.payload`
+    console.log(`req.payload`, req.payload);
+   
+    // Send back the object with user data
+    // previously set as the token payload
+    res.status(200).json(req.payload);
+  });
 
 module.exports = router;
 

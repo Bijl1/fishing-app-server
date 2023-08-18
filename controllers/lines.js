@@ -26,9 +26,12 @@ exports.getLineById = async (req, res) => {
 
 // Create a new line
 exports.createLine = async (req, res) => {
-  const { tencelStr, gauge, knotType } = req.body;
+  console.log({createLineBody: req.body})
+  // const { tencelStr, gauge, knotType } = req.body;
+  // no need to be specific here when your already requiring it in the model
   try {
-    const newLine = await Line.create({ tencelStr, gauge, knotType });
+    const newLine = await Line.create(req.body);
+    console.log({newLineCreated: newLine});
     res.status(201).json(newLine);
   } catch (error) {
     res.status(500).json({ message: 'Server Error' });
