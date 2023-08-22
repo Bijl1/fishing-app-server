@@ -26,11 +26,15 @@ exports.getSinkerById = async (req, res) => {
 
 // Create a new sinker
 exports.createSinker = async (req, res) => {
+  console.log('creating sinker!')
   const { type, shape } = req.body;
+  console.log({body: req.body});
   try {
     const newSinker = await Sinker.create({ type, shape });
+    console.log({newSinker});
     res.status(201).json(newSinker);
   } catch (error) {
+    console.log({error});
     res.status(500).json({ message: 'Server Error' });
   }
 };
