@@ -24,6 +24,8 @@ router.post('/signup', async (req, res) => {
     user.password = await bcrypt.hash(password, salt);
     await user.save();
 
+    console.log({user, hashedPassword: user.password, })
+
     // Generate JWT
     const payload = {
       user: {
@@ -42,12 +44,13 @@ router.post('/signup', async (req, res) => {
 
 // Login route
 router.post('/signin', async (req, res) => {
+  console.log({signingUp: req.body})
   try {
     const { email, password } = req.body;
 
     // Check if the user exists
     let user = await User.findOne({ email });
-    console.log({user});
+    console.log({user, body: req.body});
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
