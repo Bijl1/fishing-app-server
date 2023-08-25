@@ -1,30 +1,6 @@
 // const jwt = require('express-jwt');
 const config = require('../config/config');
 
-// // Middleware for user authentication
-// const authenticateUser = (req, res, next) => {
-//   const token = req.header('Authorization');
-
-//   if (!token) {
-//     return res.status(401).json({ message: 'No token, authorization denied' });
-//   }
-
-//   try {
-//     const decoded = jwt.verify(token, config.jwtSecret);
-//     console.log({decoded});
-//     req.user = decoded.user;
-//     next();
-//   } catch (error) {
-//     res.status(401).json({ message: 'Token is not valid' });
-//   }
-// };
-
-// export default isAuthenticated = jwt.({
-//   secret: config.jwtSecret,
-//   algoriths: 
-// })go to my example
-// what example?
-
 const { expressjwt: jwt } = require("express-jwt");
 
 // Instantiate the JWT token validation middleware
