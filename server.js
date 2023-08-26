@@ -12,7 +12,7 @@ const authRoutes = require('./routes/auth.routes');
 app.use(cors(true));
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/fishing-app', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/fishing-app', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
