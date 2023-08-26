@@ -3,7 +3,6 @@ const router = express.Router();
 const lineController = require('../controllers/lines');
 const { authenticateUser } = require('../middleware/auth');
 
-// Routes for lines
 router.get('/', lineController.getAllLines);
 router.get('/:id', lineController.getLineById);
 router.post('/', lineController.createLine);

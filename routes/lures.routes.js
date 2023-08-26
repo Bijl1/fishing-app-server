@@ -3,7 +3,6 @@ const router = express.Router();
 const lureController = require('../controllers/lures');
 const { authenticateUser } = require('../middleware/auth');
 
-// Routes for lures
 router.get('/', lureController.getAllLures);
 router.get('/:id', lureController.getLureById);
 router.post('/', lureController.createLure);
